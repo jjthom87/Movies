@@ -25,6 +25,8 @@ var Movie = React.createClass({
       overview: this.props.overview,
       genre: this.props.genre,
       image: this.props.image,
+      id: this.props.id,
+      comments: this.props.comments,
       navigationBarHidden: true
     })
   },

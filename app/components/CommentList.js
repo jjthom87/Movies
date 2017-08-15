@@ -8,26 +8,28 @@ import {
   ScrollView,
 } from 'react-native';
 
-import Movie from './Movie';
+import Comment from './Comment';
 
-var MovieList = React.createClass({
+var CommentList = React.createClass({
   render: function() {
-  	  const {movies} = this.props;
-	  	var renderMovies = () => {
-	  		return movies.map((movie, index) => {
+  	  const {comments} = this.props;
+	  	var renderComments = () => {
+	  		if(comments && comments.length > 0){
+		  		return comments.map((comment, index) => {
+		  			return (
+			    		<Comment 
+			    			name={comment.name}
+			    			text={comment.text}
+			    			stars={comment.stars}
+			    			key={index}
+			    		/>	  			
+				    )
+	  			})
+	  		} else {
 	  			return (
-		    		<Movie 
-		    			title={movie.title}
-              id={movie._id}
-              image={movie.image}
-              genre={movie.genre}
-              overview={movie.overview}
-              navigator={this.props.navigator}
-              comments={movie.comments}
-		    			key={index}
-		    		/>	  			
-			    )
-	  		})
+	  				<Text>No Comments</Text>
+	  			)
+	  		}
 	  	}
 	  return (
 		    <View style={styles.container}>
@@ -35,7 +37,7 @@ var MovieList = React.createClass({
             automaticallyAdjustContentInsets={false}
             contentContainerStyle={styles.scrollViewContainer}
           >
-				  {renderMovies()}
+		  {renderComments()}
           </ScrollView>
 		    </View>
 	  );
@@ -50,4 +52,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = MovieList
+module.exports = CommentList
