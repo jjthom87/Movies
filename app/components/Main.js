@@ -9,15 +9,15 @@ import {
   NavigatorIOS
 } from 'react-native';
 
-import MovieTop from './MovieTop';
+import HomeScreen from './HomeScreen';
 
 var Main = React.createClass({
   render: function() {
     return (
       <NavigatorIOS
         initialRoute={{
-          component: MovieTop,
-          title: 'Movie Top',
+          component: HomeScreen,
+          title: 'Home Screen',
           navigationBarHidden: true
         }}
         style={{flex: 1}}

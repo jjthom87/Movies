@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Animated,
+  TouchableOpacity
 } from 'react-native';
-import {reduxForm} from 'redux-form';
 
 import Search from './Search';
 import MovieList from './MovieList';
@@ -18,6 +18,12 @@ var MovieTop = React.createClass({
       movies: [],
       searchInput: ''
     }
+  },
+  setModalVisible: function(visible) {
+    this.setState({modalVisible: true});
+  },
+  setModalInvisible: function(){
+    this.setState({modalVisible: false});
   },
   searchMovie: function(input){
     this.setState({
@@ -50,9 +56,9 @@ var MovieTop = React.createClass({
     var renderList = () => {
       if(this.state.loading){
         return (
-          <View style={styles.loading}>
+          <Animated.View style={styles.loading}>
             <Text style={styles.welcome}>Loading...</Text>
-          </View>
+          </Animated.View>
         )
       } else {
         return (
@@ -62,9 +68,7 @@ var MovieTop = React.createClass({
     }
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to the movie app
-        </Text>
+        <Text style={styles.welcome}>My Favorite Movies</Text>
         <Search onSearchMovie={this.searchMovie}/>
         {renderList()}
       </View>

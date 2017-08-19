@@ -21,17 +21,14 @@ var MovieItem = React.createClass({
     return {
       starCount: 0,
       commentText: '',
-      nameText: '',
-      starAverage: ''
+      nameText: ''
     }
   },
   onBack: function(){
     this.props.navigator.pop();
   },
   onStarRatingPress: function(rating) {
-    this.setState({
-      starCount: rating
-    });
+    this.setState({starCount: rating});
   },
   addComment: function(){
     const creds = {
@@ -40,12 +37,14 @@ var MovieItem = React.createClass({
       stars: this.state.starCount,
       id: this.props.route.id
     }
-    axios.post('http://localhost:3000/v1/postComment', {creds}, {
-    }).then((response) => {
-          this.props.navigator.pop();
-      }).catch((err) => {
-          console.log(err)
-      })
+    if(this.state.nameText !== "" && this.state.commentText !== ""){
+      axios.post('http://localhost:3000/v1/postComment', {creds}, {
+        }).then((response) => {
+            this.props.navigator.pop();
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
   },
   render: function() {
     const {genre, name, overview, image, comments} = this.props.route;
@@ -80,7 +79,7 @@ var MovieItem = React.createClass({
           <View style={styles.movieOverviewTitle}>
             <Text style={styles.plotWording}>Plot</Text>
           </View>
-          <Text>{overview}</Text>
+          <Text style={styles.overviewWording}>{overview}</Text>
           <View style={styles.movieOverviewTitle}>
             <Text>Genre: {genre}</Text>
           </View>
@@ -118,6 +117,9 @@ var MovieItem = React.createClass({
           </TouchableOpacity>
           {starCountAverage()}
           <View style={styles.movieOverviewTitle}>
+            <View>
+              <Text style={styles.plotWording}>Comments</Text>
+            </View>
             <CommentList comments={comments}/>
           </View>
 		    </View>
@@ -139,18 +141,19 @@ const styles = StyleSheet.create({
     width: 100
   },
   movieOverviewTitle: {
-    paddingTop: 20
+    paddingTop: 10
   },
   plotWording: {
     textDecorationLine: 'underline',
-    color: 'black'
+    color: 'black',
+    fontSize: 10
   },
   arrow: {
     paddingRight: 50
   },
   topBar: {
     padding: 16,
-    paddingTop: 28,
+    paddingTop: 10,
     paddingBottom: 8,
     marginRight: 200,
     flexDirection: 'row',
@@ -167,6 +170,9 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 26
+  },
+  overviewWording: {
+    fontSize: 10
   }
 });
 

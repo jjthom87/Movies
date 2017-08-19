@@ -18,7 +18,7 @@ var Comment = React.createClass({
   	const {name, text, stars} = this.props;
 	  return (
 		<View>
-			<Text>{name}: {text}</Text>
+			<Text style={{fontSize: 10}}>{name}: {text}</Text>
 		</View>
 	  );
   }
