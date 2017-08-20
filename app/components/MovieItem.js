@@ -32,6 +32,9 @@ var MovieItem = React.createClass({
     this.setState({starCount: rating});
   },
   addComment: function(){
+    if(stars != 0){
+
+    }
     const creds = {
       name: this.state.nameText,
       comment: this.state.commentText,
@@ -70,11 +73,11 @@ var MovieItem = React.createClass({
         num += comment.stars;
       })
     }
-    var average = parseFloat(num/comments.length);
+    var average = Math.ceil(num/comments.length);
     const starCountAverage = () => {
         return (
           <View style={styles.movieOverviewTitle}>
-            <Text style={styles.plotWording}>User Rating: {average}/5</Text>
+            <Text style={styles.plotWording}>User Rating Average: {average}/5</Text>
           </View>
         )
     }
