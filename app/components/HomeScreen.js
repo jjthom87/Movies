@@ -11,9 +11,6 @@ import OmdbTop from './OmdbTop';
 import MovieTop from './MovieTop'
 
 var HomeScreen = React.createClass({
-  getInitialState: function(){
-    return {}
-  },
   toAllMovies: function(){
     this.props.navigator.push({
       component: OmdbTop,
@@ -26,7 +23,7 @@ var HomeScreen = React.createClass({
       title: 'View and Comment on My Favorite Movies'
     })
   },
-  render: function() {
+  render: function(){
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to the Movie App</Text>

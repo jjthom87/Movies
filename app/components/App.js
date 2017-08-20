@@ -13,9 +13,6 @@ import {
 import Main from './Main';
 
 var App = React.createClass({
-  getInitialState: function(){
-    return {}
-  },
   render: function() {
     return (
       <View style={{flex: 1}}>

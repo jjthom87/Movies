@@ -14,8 +14,8 @@ import MovieItem from './MovieItem';
 var Movie = React.createClass({
   getInitialState: function(){
     return {
-      clicked: ''
-    }
+        clicked: ''
+    };
   },
   movieClick: function(){
     this.props.navigator.push({

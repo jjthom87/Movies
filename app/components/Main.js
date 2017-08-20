@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
   NavigatorIOS
 } from 'react-native';
 
@@ -24,6 +19,6 @@ var Main = React.createClass({
       />
     );
   }
-})
+});
 
 module.exports = Main;

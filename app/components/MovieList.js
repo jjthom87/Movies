@@ -3,8 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  TouchableOpacity,
   ScrollView,
 } from 'react-native';
 
@@ -50,4 +48,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = MovieList
+module.exports = MovieList;

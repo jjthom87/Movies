@@ -9,12 +9,12 @@ import {reduxForm} from 'redux-form';
 
 import App from './app/components/App';
 
-var Movies = React.createClass({
-  render: function() {
+class Movies extends Component {
+  render() {
     return (
       <App/>
     );
   }
-});
+};
 
 AppRegistry.registerComponent('movies', () => Movies);

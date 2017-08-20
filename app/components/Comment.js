@@ -10,21 +10,14 @@ import {
 } from 'react-native';
 
 var Comment = React.createClass({
-  getInitialState: function(){
-    return {
-    }
-  },
   render: function() {
   	const {name, text, stars} = this.props;
 	  return (
-		<View>
-			<Text style={{fontSize: 10}}>{name}: {text}</Text>
-		</View>
+  		<View>
+  			<Text style={{fontSize: 10}}>{name}: {text}</Text>
+  		</View>
 	  );
   }
-});
-
-const styles = StyleSheet.create({
 });
 
 module.exports = Comment;

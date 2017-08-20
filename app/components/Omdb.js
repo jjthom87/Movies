@@ -9,16 +9,16 @@ import {
 
 var Omdb = React.createClass({
   getInitialState: function(){
-    return { 
-    	omdbSearchText: '' 
+    return {
+    	omdbSearchText: ''
     }
   },
   onSearchMovie: function(omdbSearchText){
     this.setState({omdbSearchText})
   },
   onMovieSearch: function(){
-    this._textInput.setNativeProps({omdbSearchText: ''});
-  	this.props.searchOmdb(this.state.omdbSearchText)
+    this.props.searchOmdb(this.state.omdbSearchText)
+    this._textInput.setNativeProps({text: ''});
   },
   render: function() {
 	  return (
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = Omdb
+module.exports = Omdb;

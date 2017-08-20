@@ -40,6 +40,7 @@ var MovieTop = React.createClass({
     }).then((response) => response.json())
     .then((results) => {
       if(results){
+        console.log(results)
         this.setState({
           loading: false,
           movies: results

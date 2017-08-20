@@ -11,37 +11,32 @@ import {
 } from 'react-native';
 
 var OmdbItem = React.createClass({
-  getInitialState: function(){
-    return {
-    }
-  },
   onBack: function(){
     this.props.navigator.pop();
-
   },
   render: function() {
-  	const {movie} = this.props.route;
-	return (
-		<View style={styles.container}>
-          <View style={styles.topBar}>
-            <TouchableOpacity onPress={this.onBack}>
-              <Icon name="chevron-left" size={20} color="black"/>
-            </TouchableOpacity>
-          </View>
-          <Image 
-            source={{uri: movie[movie.length - 1].Poster}}
-            style={styles.movieImage}
-          /> 
-          <Text>{movie[movie.length - 1].Title}</Text>
-          <View style={styles.movieOverviewTitle}>
-            <Text style={styles.plotWording}>Plot</Text>
-          </View>
-          <Text style={styles.overviewWording}>{movie[movie.length - 1].Plot}</Text>
-          <View style={styles.movieOverviewTitle}>
-            <Text>Genre: {movie[movie.length - 1].Genre}</Text>
-          </View>
-		</View>
-	  );
+    const {movie} = this.props.route;
+  	return (
+  		<View style={styles.container}>
+            <View style={styles.topBar}>
+              <TouchableOpacity onPress={this.onBack}>
+                <Icon name="chevron-left" size={20} color="black"/>
+              </TouchableOpacity>
+            </View>
+            <Image 
+              source={{uri: movie[movie.length - 1].Poster}}
+              style={styles.movieImage}
+            /> 
+            <Text>{movie[movie.length - 1].Title}</Text>
+            <View style={styles.movieOverviewTitle}>
+              <Text style={styles.plotWording}>Plot</Text>
+            </View>
+            <Text style={styles.overviewWording}>{movie[movie.length - 1].Plot}</Text>
+            <View style={styles.movieOverviewTitle}>
+              <Text>Genre: {movie[movie.length - 1].Genre}</Text>
+            </View>
+  		</View>
+  	 );
   }
 });
 

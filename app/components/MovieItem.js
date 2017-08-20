@@ -21,8 +21,9 @@ var MovieItem = React.createClass({
     return {
       starCount: 0,
       commentText: '',
-      nameText: ''
-    }
+      nameText: '',
+      comments: []
+    };
   },
   onBack: function(){
     this.props.navigator.pop();
@@ -40,14 +41,28 @@ var MovieItem = React.createClass({
     if(this.state.nameText !== "" && this.state.commentText !== ""){
       axios.post('http://localhost:3000/v1/postComment', {creds}, {
         }).then((response) => {
-            this.props.navigator.pop();
+            var data = response.config.data;
+            var parsed = JSON.parse(data);
+            const post = [{
+              name: parsed.creds.name,
+              text: parsed.creds.comment,
+              stars: parsed.creds.stars,
+              id: parsed.creds.id
+            }];
+            this.setState({
+              comments: this.state.comments.concat(post)
+            })
         }).catch((err) => {
             console.log(err)
         })
     }
   },
+  componentWillMount: function(){
+    this.setState({comments: this.props.route.comments})
+  },
   render: function() {
-    const {genre, name, overview, image, comments} = this.props.route;
+    const {genre, name, overview, image} = this.props.route;
+    const {comments} = this.state;
     const thumbnail = thumbnails[name];
     let num = 0;
     if(comments.length > 0){
@@ -55,15 +70,14 @@ var MovieItem = React.createClass({
         num += comment.stars;
       })
     }
-    var average = num/comments.length;
+    var average = parseFloat(num/comments.length);
     const starCountAverage = () => {
         return (
           <View style={styles.movieOverviewTitle}>
-            <Text style={styles.plotWording}>User Rating: {average}</Text>
+            <Text style={styles.plotWording}>User Rating: {average}/5</Text>
           </View>
         )
     }
-
 	  return (
 		    <View style={styles.container}>
           <View style={styles.topBar}>

@@ -32,16 +32,16 @@ var CommentList = React.createClass({
 	  		}
 	  	}
 	  return (
-		    <View style={styles.container}>
+		<View style={styles.container}>
           <ScrollView
             automaticallyAdjustContentInsets={false}
             contentContainerStyle={styles.scrollViewContainer}
           >
 		  {renderComments()}
           </ScrollView>
-		    </View>
+		</View>
 	  );
-  }
+    }
 });
 
 const styles = StyleSheet.create({
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = CommentList
+module.exports = CommentList;

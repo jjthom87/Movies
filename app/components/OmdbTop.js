@@ -20,7 +20,7 @@ var OmdbTop = React.createClass({
       modalVisible: false
     }
   },
-  setModalVisible: function(visible) {
+  setModalVisible: function() {
     this.setState({modalVisible: true});
   },
   setModalInvisible: function(){
@@ -49,8 +49,6 @@ var OmdbTop = React.createClass({
         }
       }
     })
-  },
-  componentWillMount: function(){
   },
   render: function() {
     const renderModal = (text) => {

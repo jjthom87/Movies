@@ -9,7 +9,7 @@ import {
 
 var Search = React.createClass({
   getInitialState: function(){
-    return { 
+    return {
     	text: '' 
     }
   },
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = Search
+module.exports = Search;
