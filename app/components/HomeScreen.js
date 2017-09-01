@@ -51,11 +51,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => ({});
-
 const mapDispatchToProps = dispatch => ({
   omdb: () => dispatch({ type: 'goToOmdbTop' }),
   movies: () => dispatch({ type: 'goToMovieTop' })
 });
 
-module.exports = connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+module.exports = connect(() => ({}), mapDispatchToProps)(HomeScreen);
