@@ -26,30 +26,30 @@ var OmdbTop = React.createClass({
   setModalInvisible: function(){
     this.setState({modalVisible: false});
   },
-  searchOmdb: function(input){
-    api.getMovies(input).then((movie) => {
-      if(input === ""){
-        this.setModalVisible()
-      } else {
-        if(movie.Error){
-          AlertIOS.alert('No movie with that name')
-        } else {
-          if(movie){
-            this.setState({omdbLoading: false})
-            this.state.omdb.push(movie)
-            this.props.navigator.push({
-              component: OmdbItem,
-              title: 'Omdb Item',
-              navigationBarHidden: true,
-              movie: this.state.omdb
-            });
-          } else {
-            this.setState({omdbLoading: true})
-          }
-        }
-      }
-    })
-  },
+  // searchOmdb: function(input){
+  //   api.getMovies(input).then((movie) => {
+  //     if(input === ""){
+  //       this.setModalVisible()
+  //     } else {
+  //       if(movie.Error){
+  //         AlertIOS.alert('No movie with that name')
+  //       } else {
+  //         if(movie){
+  //           this.setState({omdbLoading: false})
+  //           this.state.omdb.push(movie)
+  //           this.props.navigator.push({
+  //             component: OmdbItem,
+  //             title: 'Omdb Item',
+  //             navigationBarHidden: true,
+  //             movie: this.state.omdb
+  //           });
+  //         } else {
+  //           this.setState({omdbLoading: true})
+  //         }
+  //       }
+  //     }
+  //   })
+  // },
   render: function() {
     const renderModal = (text) => {
       return (
@@ -80,7 +80,7 @@ var OmdbTop = React.createClass({
         )
       } else {
         return (
-          <Omdb searchOmdb={this.searchOmdb}/>
+          <Omdb/>
         )
       }
     }

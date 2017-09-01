@@ -11,16 +11,17 @@ import {
 } from 'react-native';
 
 import Main from './Main';
+import AppNavigation from '../navigation';
 
 var App = React.createClass({
   render: function() {
     return (
       <View style={{flex: 1}}>
         <StatusBar barStyle="light-content"/>
-        <Main/>
+        <AppNavigation/>
       </View>
     )
   }
 });
 
-module.exports = App;
+export default App;

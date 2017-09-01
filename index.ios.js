@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+  AppRegistry
 } from 'react-native';
-import {reduxForm} from 'redux-form';
+import {Provider} from 'react-redux';
 
 import App from './app/components/App';
+
+import {configureStore} from './app/store';
 
 class Movies extends Component {
   render() {
     return (
-      <App/>
+      <Provider store={configureStore()}>
+      	<App/>
+      </Provider>
     );
   }
 };

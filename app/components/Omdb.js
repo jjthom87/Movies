@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {reduxForm} from 'redux-form';
 import {
   StyleSheet,
   Text,
@@ -7,31 +8,22 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import {omdbSearch} from '../actions';
+
 var Omdb = React.createClass({
-  getInitialState: function(){
-    return {
-    	omdbSearchText: ''
-    }
-  },
-  onSearchMovie: function(omdbSearchText){
-    this.setState({omdbSearchText})
-  },
-  onMovieSearch: function(){
-    this.props.searchOmdb(this.state.omdbSearchText)
-    this._textInput.setNativeProps({text: ''});
-  },
   render: function() {
+    var {dispatch, fields: {input}} = this.props;
+    console.log(this.props)
 	  return (
 	    <View style={styles.container}>
 	      <View style={styles.field}>
 	        <TextInput
+            {...input}
 	          placeholder="Search Movie from Omdb by Title"
 	          style={styles.textInput}
-        	  onChangeText={this.onSearchMovie}
-            ref={component => this._textInput = component}
 	        />
           <View style={{alignItems: 'center'}}>
-  	        <TouchableOpacity onPress={this.onMovieSearch}>
+  	        <TouchableOpacity onPress={() => dispatch(omdbSearch(input.value))}>
               <Text style={{color: "#2ecc71", width: 50, textAlign: 'center', fontFamily: 'HelveticaNeue-Bold'}}>Search</Text>
             </TouchableOpacity>
           </View>
@@ -61,4 +53,22 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = Omdb;
+var mapStateToProps = (state) => {
+  return {
+    omdbComponent: state.omdb
+  }
+}
+
+var validate = (formProps) => {
+  var errors = {};
+  if(!formProps.input){
+    errors.input = "Please input a movie.";
+  }
+  return errors;
+}
+
+export default reduxForm({
+  form: 'omdb',
+  fields: ['input'],
+  validate: validate
+}, mapStateToProps, null)(Omdb);

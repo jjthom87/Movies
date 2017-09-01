@@ -21,4 +21,4 @@ var Main = React.createClass({
   }
 });
 
-module.exports = Main;
+module.exports = connect()(Main);

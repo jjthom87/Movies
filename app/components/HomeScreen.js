@@ -7,40 +7,21 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import OmdbTop from './OmdbTop';
-import MovieTop from './MovieTop'
-
-var HomeScreen = React.createClass({
-  toAllMovies: function(){
-    this.props.navigator.push({
-      component: OmdbTop,
-      title: 'Search All Movies by Title'
-    })
-  },
-  toMyMovies: function(){
-    this.props.navigator.push({
-      component: MovieTop,
-      title: 'View and Comment on My Favorite Movies'
-    })
-  },
-  render: function(){
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to the Movie App</Text>
-        <View style={styles.wording}>
-          <TouchableOpacity onPress={this.toAllMovies}>
-            <Text style={styles.word}>Search All Movies</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.wording}>
-          <TouchableOpacity onPress={this.toMyMovies}>
-            <Text style={styles.word}>My Favorite Movies</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    )
-  }
-});
+const HomeScreen = ({omdb, movies}) => (
+  <View style={styles.container}>
+    <Text style={styles.welcome}>Welcome to the Movie App</Text>
+    <View style={styles.wording}>
+      <TouchableOpacity onPress={omdb}>
+        <Text style={styles.word}>Search All Movies</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={styles.wording}>
+      <TouchableOpacity onPress={movies}>
+        <Text style={styles.word}>My Favorite Movies</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -70,4 +51,11 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = HomeScreen;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  omdb: () => dispatch({ type: 'goToOmdbTop' }),
+  movies: () => dispatch({ type: 'goToMovieTop' })
+});
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
