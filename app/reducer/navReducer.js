@@ -6,6 +6,10 @@ const initialState = AppNavigator.router.getStateForAction(NavigationActions.ini
 const NavReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
+        case 'goToHomeScreen':
+            newState = AppNavigator.router.getStateForAction(
+            NavigationActions.navigate({ routeName: 'Main' }), state);
+            break;
         case 'goToOmdb':
             newState = AppNavigator.router.getStateForAction(
             NavigationActions.navigate({ routeName: 'OmdbItem' }), state);

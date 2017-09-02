@@ -7,16 +7,16 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const HomeScreen = ({omdb, movies}) => (
+const HomeScreen = ({navigation}) => (
   <View style={styles.container}>
     <Text style={styles.welcome}>Welcome to the Movie App</Text>
     <View style={styles.wording}>
-      <TouchableOpacity onPress={omdb}>
+      <TouchableOpacity onPress={() => navigation.dispatch({ type: 'goToOmdbTop' })}>
         <Text style={styles.word}>Search All Movies</Text>
       </TouchableOpacity>
     </View>
     <View style={styles.wording}>
-      <TouchableOpacity onPress={movies}>
+      <TouchableOpacity onPress={() => navigation.dispatch({ type: 'goToMovieTop' })}>
         <Text style={styles.word}>My Favorite Movies</Text>
       </TouchableOpacity>
     </View>
@@ -51,9 +51,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapDispatchToProps = dispatch => ({
-  omdb: () => dispatch({ type: 'goToOmdbTop' }),
-  movies: () => dispatch({ type: 'goToMovieTop' })
-});
-
-module.exports = connect(() => ({}), mapDispatchToProps)(HomeScreen);
+module.exports = HomeScreen;

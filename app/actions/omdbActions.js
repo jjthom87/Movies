@@ -9,6 +9,7 @@ import OmdbItem from './../components/OmdbItem';
 exports.omdbSearch = (input) => {
 	return function(dispatch){
 	    return api.getMovies(input).then((movie) => {
+	    	console.log(movie)
 	      if(input === ""){
 	        dispatch({
 	        	type: "MODAL_VISIBLE",
@@ -24,8 +25,6 @@ exports.omdbSearch = (input) => {
 	           		omdbLoading: false,
 	           		movie: movie
 	           	});
-	            //this.state.omdb.push(movie)
-	            this.props.navigation.dispatch({ type: 'goToOmdb' });
 	          } else {
 	           	dispatch({
 	    			type: "OMDB_LOADING",

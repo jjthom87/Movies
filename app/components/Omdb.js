@@ -7,15 +7,27 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
+import Icon from 'react-native-vector-icons/Octicons';
 
 import {omdbSearch} from '../actions';
 
 var Omdb = React.createClass({
+  setOmdb: function(){
+    var {dispatch, fields: {input}} = this.props;
+      dispatch(omdbSearch(input.value));
+      this.props.omdbNav();
+  },
   render: function() {
     var {dispatch, fields: {input}} = this.props;
-    console.log(this.props)
+    console.log(this.props);
 	  return (
 	    <View style={styles.container}>
+        <View style={styles.topBar}>
+          <TouchableOpacity onPress={this.props.homeNav}>
+            <Icon name="arrow-left" size={20} color="black"/>
+          </TouchableOpacity>
+        </View>
 	      <View style={styles.field}>
 	        <TextInput
             {...input}
@@ -23,7 +35,7 @@ var Omdb = React.createClass({
 	          style={styles.textInput}
 	        />
           <View style={{alignItems: 'center'}}>
-  	        <TouchableOpacity onPress={() => dispatch(omdbSearch(input.value))}>
+  	        <TouchableOpacity onPress={this.setOmdb}>
               <Text style={{color: "#2ecc71", width: 50, textAlign: 'center', fontFamily: 'HelveticaNeue-Bold'}}>Search</Text>
             </TouchableOpacity>
           </View>
@@ -39,6 +51,15 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     backgroundColor: '#2ecc71'
   },
+  topBar: {
+    padding: 16,
+    paddingTop: 10,
+    paddingBottom: 8,
+    marginRight: 200,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   field: {
   	borderRadius: 5,
   	padding: 5,
@@ -53,11 +74,10 @@ const styles = StyleSheet.create({
   }
 });
 
-var mapStateToProps = (state) => {
-  return {
-    omdbComponent: state.omdb
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  omdbNav: () => dispatch({ type: 'goToOmdb' }),
+  homeNav: () => dispatch({ type: 'goToHomeScreen' })
+});
 
 var validate = (formProps) => {
   var errors = {};
@@ -71,4 +91,4 @@ export default reduxForm({
   form: 'omdb',
   fields: ['input'],
   validate: validate
-}, mapStateToProps, null)(Omdb);
+}, null, mapDispatchToProps)(Omdb);
