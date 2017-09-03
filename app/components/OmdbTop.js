@@ -3,9 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
-  AlertIOS
+  AlertIOS,
+  TouchableOpacity
 } from 'react-native';
 import Modal from 'react-native-modal';
+import Icon from 'react-native-vector-icons/Octicons';
+import {connect} from 'react-redux';
 
 import Omdb from './Omdb';
 import OmdbItem from './OmdbItem';
@@ -26,50 +29,26 @@ var OmdbTop = React.createClass({
   setModalInvisible: function(){
     this.setState({modalVisible: false});
   },
-  // searchOmdb: function(input){
-  //   api.getMovies(input).then((movie) => {
-  //     if(input === ""){
-  //       this.setModalVisible()
-  //     } else {
-  //       if(movie.Error){
-  //         AlertIOS.alert('No movie with that name')
-  //       } else {
-  //         if(movie){
-  //           this.setState({omdbLoading: false})
-  //           this.state.omdb.push(movie)
-  //           this.props.navigator.push({
-  //             component: OmdbItem,
-  //             title: 'Omdb Item',
-  //             navigationBarHidden: true,
-  //             movie: this.state.omdb
-  //           });
-  //         } else {
-  //           this.setState({omdbLoading: true})
-  //         }
-  //       }
-  //     }
-  //   })
-  // },
   render: function() {
     const renderModal = (text) => {
       return (
-            <Modal 
-              isVisible={this.state.modalVisible}
-              backdropColor={'#2ecc71'}
-              backdropOpacity={1}
-              animationIn={'zoomInDown'}
-              animationOut={'zoomOutUp'}
-              animationInTiming={1000}
-              animationOutTiming={1000}
-              backdropTransitionInTiming={1000}
-              backdropTransitionOutTiming={1000}
-            >
-              <View style={styles.modalContent}>
-                <Text>{text}</Text>
-                <Text onPress={this.setModalInvisible} style={styles.noInput}>X</Text>
-              </View>
-            </Modal>
-          )
+        <Modal 
+          isVisible={this.state.modalVisible}
+          backdropColor={'#2ecc71'}
+          backdropOpacity={1}
+          animationIn={'zoomInDown'}
+          animationOut={'zoomOutUp'}
+          animationInTiming={1000}
+          animationOutTiming={1000}
+          backdropTransitionInTiming={1000}
+          backdropTransitionOutTiming={1000}
+        >
+          <View style={styles.modalContent}>
+            <Text>{text}</Text>
+            <Text onPress={this.setModalInvisible} style={styles.noInput}>X</Text>
+          </View>
+        </Modal>
+      )
     }
     var renderOmdb = () => {
       if(this.state.omdbLoading){
@@ -86,6 +65,11 @@ var OmdbTop = React.createClass({
     }
     return (
       <View style={styles.container}>
+        <View style={styles.topBar}>
+          <TouchableOpacity onPress={this.props.homeNav}>
+            <Icon name="arrow-left" size={20} color="black"/>
+          </TouchableOpacity>
+        </View>
         <Text style={styles.welcome}>
           Search All Movies
         </Text>
@@ -99,7 +83,6 @@ var OmdbTop = React.createClass({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
@@ -132,7 +115,20 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center',
     overflow: 'hidden'
+  },
+  topBar: {
+    padding: 16,
+    paddingTop: 10,
+    paddingBottom: 8,
+    marginRight: 200,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   }
 });
 
-module.exports = OmdbTop;
+const mapDispatchToProps = dispatch => ({
+  homeNav: () => dispatch({ type: 'goToHomeScreen' })
+});
+
+module.exports = connect(null, mapDispatchToProps)(OmdbTop);

@@ -14,7 +14,6 @@ import {
 var OmdbItem = React.createClass({
   render: function() {
     const {movie} = this.props;
-    console.log(this.props)
   	return (
   		<View style={styles.container}>
         <View style={styles.topBar}>

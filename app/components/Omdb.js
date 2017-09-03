@@ -8,7 +8,6 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import Icon from 'react-native-vector-icons/Octicons';
 
 import {omdbSearch} from '../actions';
 
@@ -19,15 +18,9 @@ var Omdb = React.createClass({
       this.props.omdbNav();
   },
   render: function() {
-    var {dispatch, fields: {input}} = this.props;
-    console.log(this.props);
+    var {fields: {input}} = this.props;
 	  return (
 	    <View style={styles.container}>
-        <View style={styles.topBar}>
-          <TouchableOpacity onPress={this.props.homeNav}>
-            <Icon name="arrow-left" size={20} color="black"/>
-          </TouchableOpacity>
-        </View>
 	      <View style={styles.field}>
 	        <TextInput
             {...input}
@@ -36,7 +29,7 @@ var Omdb = React.createClass({
 	        />
           <View style={{alignItems: 'center'}}>
   	        <TouchableOpacity onPress={this.setOmdb}>
-              <Text style={{color: "#2ecc71", width: 50, textAlign: 'center', fontFamily: 'HelveticaNeue-Bold'}}>Search</Text>
+              <Text style={{color: "white", width: 50, textAlign: 'center', fontFamily: 'HelveticaNeue-Bold'}}>Search</Text>
             </TouchableOpacity>
           </View>
 	      </View>
@@ -49,16 +42,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'flex-start',
     paddingTop: 20,
-    backgroundColor: '#2ecc71'
-  },
-  topBar: {
-    padding: 16,
-    paddingTop: 10,
-    paddingBottom: 8,
-    marginRight: 200,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
   field: {
   	borderRadius: 5,
@@ -66,17 +49,17 @@ const styles = StyleSheet.create({
   	paddingLeft: 8,
   	margin: 7,
   	marginTop: 0,
-  	backgroundColor: 'white'
+    backgroundColor: '#2ecc71'
   },
   textInput: {
   	height: 26,
-  	width: 300
+  	width: 300,
+    backgroundColor: 'white'
   }
 });
 
 const mapDispatchToProps = dispatch => ({
-  omdbNav: () => dispatch({ type: 'goToOmdb' }),
-  homeNav: () => dispatch({ type: 'goToHomeScreen' })
+  omdbNav: () => dispatch({ type: 'goToOmdb' })
 });
 
 var validate = (formProps) => {
