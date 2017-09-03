@@ -6,7 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import {homeStyles} from '../styles';
+import {homeStyles} from '../../styles';
 const styles = StyleSheet.create(homeStyles);
 
 const HomeScreen = ({navigation}) => (

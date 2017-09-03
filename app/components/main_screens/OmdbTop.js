@@ -10,12 +10,12 @@ import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/Octicons';
 import {connect} from 'react-redux';
 
-import Omdb from './Omdb';
+import Omdb from './../omdb/Omdb';
 
-import {omdbTopStyles} from '../styles';
+import {omdbTopStyles} from '../../styles';
 const styles = StyleSheet.create(omdbTopStyles);
 
-import {modalInvisible} from '../actions';
+import {modalInvisible} from '../../actions';
 
 var OmdbTop = React.createClass({
   modalBack: function(){

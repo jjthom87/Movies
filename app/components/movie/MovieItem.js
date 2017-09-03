@@ -12,7 +12,7 @@ import {
   Image
 } from 'react-native';
 
-import CommentList from './CommentList';
+import CommentList from './../movie_comments/CommentList';
 
 import {thumbnails} from './images';
 

@@ -10,7 +10,7 @@ import {
   Image
 } from 'react-native';
 
-import {omdbItemStyles} from '../styles';
+import {omdbItemStyles} from '../../styles';
 const styles = StyleSheet.create(omdbItemStyles);
 
 var OmdbItem = React.createClass({

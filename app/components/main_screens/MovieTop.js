@@ -7,8 +7,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import Search from './Search';
-import MovieList from './MovieList';
+import Search from './../search/Search';
+import MovieList from './../movie/MovieList';
 
 var MovieTop = React.createClass({
   getInitialState: function(){

@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
-import {omdbSearch} from '../actions';
-import {omdbStyles} from '../styles';
+import {omdbSearch} from '../../actions';
+import {omdbStyles} from '../../styles';
 const styles = StyleSheet.create(omdbStyles);
 
 var Omdb = React.createClass({
