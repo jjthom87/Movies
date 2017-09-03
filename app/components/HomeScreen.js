@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity
 } from 'react-native';
+
+import {homeStyles} from '../styles';
+const styles = StyleSheet.create(homeStyles);
 
 const HomeScreen = ({navigation}) => (
   <View style={styles.container}>
@@ -22,33 +24,5 @@ const HomeScreen = ({navigation}) => (
     </View>
   </View>
 );
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 20,
-  },
-  wording: {
-    padding: 20
-  },
-  word: {
-    padding: 20,
-    marginLeft: 6, 
-    backgroundColor: '#2ecc71',
-    borderColor: '#2ecc71',
-    borderRadius: 4,
-    color: 'white', 
-    alignItems: 'center', 
-    justifyContent: 'center',
-    overflow: 'hidden'
-  }
-});
 
 module.exports = HomeScreen;

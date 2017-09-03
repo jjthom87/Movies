@@ -10,6 +10,8 @@ import {
 import { NavigationActions } from 'react-navigation';
 
 import {omdbSearch} from '../actions';
+import {omdbStyles} from '../styles';
+const styles = StyleSheet.create(omdbStyles);
 
 var Omdb = React.createClass({
   setOmdb: function(){
@@ -35,26 +37,6 @@ var Omdb = React.createClass({
 	      </View>
 	    </View>
 	  );
-  }
-});
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'flex-start',
-    paddingTop: 20,
-  },
-  field: {
-  	borderRadius: 5,
-  	padding: 5,
-  	paddingLeft: 8,
-  	margin: 7,
-  	marginTop: 0,
-    backgroundColor: '#2ecc71'
-  },
-  textInput: {
-  	height: 26,
-  	width: 300,
-    backgroundColor: 'white'
   }
 });
 

@@ -11,8 +11,9 @@ import Icon from 'react-native-vector-icons/Octicons';
 import {connect} from 'react-redux';
 
 import Omdb from './Omdb';
-import OmdbItem from './OmdbItem';
-import api from './../api/movie_api';
+
+import {omdbTopStyles} from '../styles';
+const styles = StyleSheet.create(omdbTopStyles);
 
 var OmdbTop = React.createClass({
   getInitialState: function(){
@@ -77,53 +78,6 @@ var OmdbTop = React.createClass({
         {renderModal("Please Input Movie")}
       </View>
     );
-  }
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 20,
-  },
-  loading: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch'
-  },
-  modalContent: {
-    backgroundColor: 'white',
-    padding: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
-    flexDirection: 'row'
-  },
-  noInput: {
-    padding: 2,
-    marginLeft: 6, 
-    backgroundColor: '#ff766c',
-    borderColor: '#ff766c',
-    borderRadius: 4,
-    color: 'white', 
-    alignItems: 'center', 
-    justifyContent: 'center',
-    overflow: 'hidden'
-  },
-  topBar: {
-    padding: 16,
-    paddingTop: 10,
-    paddingBottom: 8,
-    marginRight: 200,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   }
 });
 

@@ -7,5 +7,5 @@ export default Routes = {
   Main: { screen: HomeScreen, navigationOptions: { header: null } },
   OmdbItem: { screen: OmdbItem, navigationOptions: { header: null } },
   OmdbTop: { screen: OmdbTop, navigationOptions: { header: null } },
-  MovieTop: { screen: MovieTop, navigationOptions: { header: null } }
+  MovieTop: { screen: MovieTop }
 };
