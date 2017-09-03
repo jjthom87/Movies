@@ -15,26 +15,18 @@ import Omdb from './Omdb';
 import {omdbTopStyles} from '../styles';
 const styles = StyleSheet.create(omdbTopStyles);
 
+import {modalInvisible} from '../actions';
+
 var OmdbTop = React.createClass({
-  getInitialState: function(){
-    return {
-      omdbLoading: false,
-      omdb: [],
-      omdbInput: '',
-      modalVisible: false
-    }
-  },
-  setModalVisible: function() {
-    this.setState({modalVisible: true});
-  },
-  setModalInvisible: function(){
-    this.setState({modalVisible: false});
+  modalBack: function(){
+    this.props.modal();
+    this.props.backToOmdbTop();
   },
   render: function() {
     const renderModal = (text) => {
       return (
         <Modal 
-          isVisible={this.state.modalVisible}
+          isVisible={this.props.modalVisible}
           backdropColor={'#2ecc71'}
           backdropOpacity={1}
           animationIn={'zoomInDown'}
@@ -46,23 +38,10 @@ var OmdbTop = React.createClass({
         >
           <View style={styles.modalContent}>
             <Text>{text}</Text>
-            <Text onPress={this.setModalInvisible} style={styles.noInput}>X</Text>
+            <Text onPress={this.modalBack} style={styles.noInput}>X</Text>
           </View>
         </Modal>
       )
-    }
-    var renderOmdb = () => {
-      if(this.state.omdbLoading){
-        return (
-          <View style={styles.loading}>
-            <Text style={styles.welcome}>Loading...</Text>
-          </View>
-        )
-      } else {
-        return (
-          <Omdb/>
-        )
-      }
     }
     return (
       <View style={styles.container}>
@@ -74,15 +53,21 @@ var OmdbTop = React.createClass({
         <Text style={styles.welcome}>
           Search All Movies
         </Text>
-        {renderOmdb()}
+        <Omdb/>
         {renderModal("Please Input Movie")}
       </View>
     );
   }
 });
 
+const mapStateToProps = state => ({
+  modalVisible: state.omdb.modalVisible
+})
+
 const mapDispatchToProps = dispatch => ({
-  homeNav: () => dispatch({ type: 'goToHomeScreen' })
+  homeNav: () => dispatch({ type: 'goToHomeScreen' }),
+  backToOmdbTop: () => dispatch({ type: 'goToOmdbTop'}),
+  modal: () => dispatch(modalInvisible)
 });
 
-module.exports = connect(null, mapDispatchToProps)(OmdbTop);
+module.exports = connect(mapStateToProps, mapDispatchToProps)(OmdbTop);

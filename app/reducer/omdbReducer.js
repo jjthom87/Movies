@@ -10,7 +10,9 @@ module.exports = (state = initialState, action) => {
 		case 'OMDB_INPUT':
 			return { ...state, omdbSearchText: action.omdbSearchText } 
 		case 'MODAL_VISIBLE':
-			return { ...state, modalVisible: !state.modalVisible }
+			return { modalVisible: !state.modalVisible }
+		case 'MODAL_INVISIBLE':
+			return { modalVisible: !state.modalVisible }
 		case 'OMDB_LOADING':
 			return { ...state, omdbLoading: !state.omdbLoading, movie: action.movie }
 		default:
