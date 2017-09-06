@@ -33,11 +33,11 @@ var Movie = React.createClass({
   render: function() {
   	const {title, id} = this.props;
 	  return (
-		    <View style={styles.movieContainer}>
-          <TouchableOpacity onPress={this.movieClick}>
-		    	   <Text>{title}</Text>
-          </TouchableOpacity>
-		    </View>
+	    <View style={styles.movieContainer}>
+        <TouchableOpacity onPress={this.movieClick}>
+	    	   <Text>{title}</Text>
+        </TouchableOpacity>
+	    </View>
 	  );
   }
 });

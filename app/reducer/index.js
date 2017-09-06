@@ -1,11 +1,13 @@
 import {combineReducers} from 'redux';
-import {reducer as formReducer} from 'redux-form';
+import {reducer as form} from 'redux-form';
 
 import omdbReducer from './omdbReducer';
 import navReducer from './navReducer';
+import movieReducer from './movieReducer';
 
 module.exports = combineReducers({
+	form,
 	nav: navReducer,
-	form: formReducer,
-	omdb: omdbReducer
+	omdb: omdbReducer,
+	movies: movieReducer
 })

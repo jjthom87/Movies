@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {reduxForm} from 'redux-form';
 import {
   StyleSheet,
   Text,
@@ -7,48 +8,38 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import {searchMoviesStyles} from '../../styles';
+const styles = StyleSheet.create(searchMoviesStyles);
+
 var Search = React.createClass({
-  getInitialState: function(){
-    return {
-    	text: '' 
-    }
-  },
-  onSearchMovie: function(text){
-    this.setState({text})
-  },
-  render: function() {
-	  return (
-	    <View style={styles.container}>
-	      <View style={styles.field}>
-	        <TextInput
-	          placeholder="Search Movie"
-	          style={styles.textInput}
-        	  onChangeText={this.props.onSearchMovie}
-	        />
-	      </View>
-	    </View>
-	  );
-  }
+  	render: function() {
+      console.log(this.props)
+  		var {dispatch, fields: {search}} = this.props;
+	  	return (
+		    <View style={styles.container}>
+		      	<View style={styles.field}>
+			        <TextInput
+			          {...search}
+			          placeholder="Search Movie"
+			          style={styles.textInput}
+			          onChangeText={() => search.value}
+			        />
+		      	</View>
+		    </View>
+	  	);
+  	}
 });
 
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'flex-start',
-    paddingTop: 20,
-    backgroundColor: '#2ecc71'
-  },
-  field: {
-  	borderRadius: 5,
-  	padding: 5,
-  	paddingLeft: 8,
-  	margin: 7,
-  	marginTop: 0,
-  	backgroundColor: 'white'
-  },
-  textInput: {
-  	height: 26,
-  	width: 300
+var validate = (formProps) => {
+  var errors = {};
+  if(!formProps.movieSearch){
+    errors.movieSearch = "Please search a movie.";
   }
-});
+  return errors;
+}
 
-module.exports = Search;
+export default reduxForm({
+  form: 'moviesearch',
+  fields: ['search'],
+  validate: validate
+}, null, null)(Search);

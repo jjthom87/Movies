@@ -22,6 +22,10 @@ const NavReducer = (state = initialState, action) => {
             newState = AppNavigator.router.getStateForAction(
             NavigationActions.navigate({ routeName: 'MovieTop' }), state);
             break;
+        case 'goToMovieItem':
+            newState = AppNavigator.router.getStateForAction(
+            NavigationActions.navigate({ routeName: 'MovieItem' }), state);
+            break;
         default:
             newState = AppNavigator.router.getStateForAction(action, state);
             break;

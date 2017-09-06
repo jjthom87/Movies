@@ -16,6 +16,9 @@ import CommentList from './../movie_comments/CommentList';
 
 import {thumbnails} from './images';
 
+import {movieItemStyles} from '../../styles';
+const styles = StyleSheet.create(movieItemStyles);
+
 var MovieItem = React.createClass({
   getInitialState: function(){
     return {
@@ -32,9 +35,6 @@ var MovieItem = React.createClass({
     this.setState({starCount: rating});
   },
   addComment: function(){
-    if(stars != 0){
-
-    }
     const creds = {
       name: this.state.nameText,
       comment: this.state.commentText,
@@ -141,55 +141,6 @@ var MovieItem = React.createClass({
           </View>
 		    </View>
 	  );
-  }
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center'
-  },
-  movieImage: {
-    justifyContent: 'space-between',
-    marginTop: 20,
-    paddingTop: 60,
-    height: 150,
-    width: 100
-  },
-  movieOverviewTitle: {
-    paddingTop: 10
-  },
-  plotWording: {
-    textDecorationLine: 'underline',
-    color: 'black',
-    fontSize: 10
-  },
-  arrow: {
-    paddingRight: 50
-  },
-  topBar: {
-    padding: 16,
-    paddingTop: 10,
-    paddingBottom: 8,
-    marginRight: 200,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  inputContainer: {
-    padding: 5,
-    paddingLeft: 10,
-    margin: 10,
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: '#2ecc71'
-  },
-  input: {
-    height: 26
-  },
-  overviewWording: {
-    fontSize: 10
   }
 });
 

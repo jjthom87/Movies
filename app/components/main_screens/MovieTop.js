@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import {
   StyleSheet,
   Text,
@@ -6,93 +7,31 @@ import {
   Animated,
   TouchableOpacity
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Octicons';
 
-import Search from './../search/Search';
 import MovieList from './../movie/MovieList';
 
-var MovieTop = React.createClass({
-  getInitialState: function(){
-    return {
-      loading: false,
-      movie: '',
-      movies: [],
-      searchInput: ''
-    }
-  },
-  setModalVisible: function(visible) {
-    this.setState({modalVisible: true});
-  },
-  setModalInvisible: function(){
-    this.setState({modalVisible: false});
-  },
-  searchMovie: function(input){
-    this.setState({
-      searchInput: input.toLowerCase()
-    })
-  },
-  componentWillMount: function(){
-    this.setState({loading: true})
-    fetch('http://localhost:3000/v1/getMovies', {
-      headers: {
-          'content-type': 'application/json',
-          'accept': 'application/json'
-      }
-    }).then((response) => response.json())
-    .then((results) => {
-      if(results){
-        this.setState({
-          loading: false,
-          movies: results
-        })
-      }
-    });
-  },
-  render: function() {
-    const filteredSearch = this.state.movies.filter((movie) => {
-      var text = movie.title.toLowerCase();
-      return this.state.searchInput.length === 0 || text.indexOf(this.state.searchInput) > -1
-    });
+import {movieTopStyles} from '../../styles';
+const styles = StyleSheet.create(movieTopStyles);
 
-    var renderList = () => {
-      if(this.state.loading){
-        return (
-          <Animated.View style={styles.loading}>
-            <Text style={styles.welcome}>Loading...</Text>
-          </Animated.View>
-        )
-      } else {
-        return (
-          <MovieList movies={filteredSearch} navigator={this.props.navigator}/>
-        )
-      }
-    }
+var MovieTop = React.createClass({
+  render: function() {
     return (
       <View style={styles.container}>
+        <View style={styles.topBar}>
+          <TouchableOpacity onPress={this.props.homeNav}>
+            <Icon name="arrow-left" size={20} color="black"/>
+          </TouchableOpacity>
+        </View>
         <Text style={styles.welcome}>My Favorite Movies</Text>
-        <Search onSearchMovie={this.searchMovie}/>
-        {renderList()}
+        <MovieList/>
       </View>
     );
   }
 });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 20,
-  },
-  loading: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch'
-  }
-});
+const mapDispatchToProps = dispatch => ({
+  homeNav: () => dispatch({ type: 'goToHomeScreen' })
+})
 
-module.exports = MovieTop;
+module.exports = connect(null, mapDispatchToProps)(MovieTop)

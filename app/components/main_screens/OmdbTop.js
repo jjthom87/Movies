@@ -67,7 +67,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   homeNav: () => dispatch({ type: 'goToHomeScreen' }),
   backToOmdbTop: () => dispatch({ type: 'goToOmdbTop'}),
-  modal: () => dispatch(modalInvisible)
+  modal: () => dispatch(modalInvisible())
 });
 
 module.exports = connect(mapStateToProps, mapDispatchToProps)(OmdbTop);

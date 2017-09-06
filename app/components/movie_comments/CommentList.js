@@ -11,8 +11,8 @@ import {
 import Comment from './Comment';
 
 var CommentList = React.createClass({
-  render: function() {
-  	  const {comments} = this.props;
+  	render: function() {
+  		const {comments} = this.props;
 	  	var renderComments = () => {
 	  		if(comments && comments.length > 0){
 		  		return comments.map((comment, index) => {
@@ -31,16 +31,16 @@ var CommentList = React.createClass({
 	  			)
 	  		}
 	  	}
-	  return (
-		<View style={styles.container}>
-          <ScrollView
-            automaticallyAdjustContentInsets={false}
-            contentContainerStyle={styles.scrollViewContainer}
-          >
-		  {renderComments()}
-          </ScrollView>
-		</View>
-	  );
+	  	return (
+			<View style={styles.container}>
+	      		<ScrollView
+	        		automaticallyAdjustContentInsets={false}
+	        		contentContainerStyle={styles.scrollViewContainer}
+		      	>
+			  	{renderComments()}
+		      	</ScrollView>
+			</View>
+	  	);
     }
 });
 
